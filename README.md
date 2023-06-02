@@ -1,8 +1,30 @@
 # actus-rshiny-demo
-This is the repository where we will gather source code for a docker image which is an containerized demo of ACTUS simulationof future cashflows for a portfolio of sample contracts under a selected sample risk scenario. The demonstration will return plots of projected profit, income and value. 
+This repository contains source code needed to build docker images for components of an ACTUS demonstration.  
 
-Source code for  build01 of this container application is stored in branches main and ( soon also to be saved ) in main-v0.1. This version of the application includes a full function rshiny demo application running locally on port 3838 of the container - publishable to the host docker desktop environment.  The application uses the actus server at https://demo.actusfrf.org:8080 to simulate cash flows for comntracts.  The built image is pushed to public dockerhub registry fnparr/actus-rshiny-demo:0.1 
+## Container images currently provided  
+  *  actus-rshiny-demo:  – R language rshiny app with a demo doing contact and portfolio simulations with a selected interest rate risk factor
+  *  actus-server :  a java,mvn,gradle  server component with an actus-webapp Version 1.1 server which uses the actus-core librar
 
-The build00 version of the application is just the architecture of the solution: a docker container with a sample RShiny Application  generating a histogram of some randomly generated values. R code to achive the target functions above will be added in a future build   
- 
-Source source for the build 00 version is saved in ( protected ) branch main-v0.0 and the image is pushed to a public dockerhub repository  fnparr/actus-rshiny-demo:0.0
+## The actus-rshiny-demo can be configured to operate :
+  * EITHER  with  the Version 1.0 actus-webapp  public server at <https://demo.actusfrf.org:8080>
+  * OR with any other accessible actus-webapp server 
+  * OR as a standalone workstation demo using a (Version 1.1 ) actus-webapp container server
+
+The dockerfiles and source code for each  docker image build are stored in this docker-actus repository. The source code for actus-rshiny-demo and actus-server images are in separate subdirectories. 
+
+## Organization of the repository
+  * Subdirectories with source dockerfiles and code  for the two docker images  
+  * Source code in docker-actus/actus-server/app/actus-core/src  is removed 
+    * To build the server container – one must be authorized with access to this source code by ACTUS Financial Research Foundation 
+    * Obtain the code from <https://github.com/actusfrf/actus-core> 
+    * copy the contents of <https://github.com/actusfrf/actus-core/src> into a local clone of repo docker-actus/actus-server/app/actus-core/src before building the docker container 
+    * This ensures that dockerfiles and non actus-core source are all in open public containers but that the actus-core source code can only be copied in by actusfrf approved parties 
+  * Already built docker images for actus-rshiny-demo  and actus-server can be downloaded from the public dockerhub registries at
+    * dockerhub.io/fnparr/actus-rshiny-demo
+    * dockerhub.io/fnparr/actus-server
+    
+## Documentation:
+  * Explanation of the steps to build and use  actus-webapp V1.0 is available in the README file in <https://github.com/actusfrf/actus-webapp>
+  * Guidance on using and building Actus-webapp V1.1 ( the containerized server ) is  available in <https://github.com/actusfrf/ACTUS-Userguides>
+  * The rshiny app in actus-rshiny-demo is largely self documenting – point any browser at the exported port of the actus-rshiny-app container
+

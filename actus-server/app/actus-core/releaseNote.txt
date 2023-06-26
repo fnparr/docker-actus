@@ -1,1 +1,0 @@
-This branch UMPwithVR supports UMP contracts with variable rates 

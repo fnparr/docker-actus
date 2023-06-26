@@ -1,1 +1,0 @@
-curl -L --request GET http://localhost:8083/scenarios/getScenario/{"Deposits"}
